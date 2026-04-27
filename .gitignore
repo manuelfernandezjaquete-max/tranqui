@@ -36,6 +36,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# claude code local config
+.claude/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated convex artifacts
+/convex/_generated
+/convex/lib/clinicalSkill.generated.ts
