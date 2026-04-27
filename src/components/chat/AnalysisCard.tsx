@@ -22,11 +22,11 @@ export interface StructuredAnalysis {
 
 const LIKELIHOOD_VARIANT: Record<
   StructuredAnalysis["probableCauses"][number]["likelihood"],
-  "danger" | "warning" | "neutral"
+  "danger" | "warning" | "sage"
 > = {
   alta: "danger",
   media: "warning",
-  baja: "neutral",
+  baja: "sage",
 };
 
 const LIKELIHOOD_LABEL: Record<
@@ -51,10 +51,10 @@ export function AnalysisCard({ analysis, consultationId }: AnalysisCardProps) {
       analysis.triageLevel === "preferente");
 
   return (
-    <Card className="space-y-5 bg-sage-100">
+    <Card className="space-y-5 bg-sage-100 text-zinc-900">
       <div className="flex flex-wrap items-center gap-3">
         <TriageBadge level={analysis.triageLevel} />
-        <h2 className="font-display text-xl font-semibold text-text-primary">
+        <h2 className="font-display text-xl font-semibold text-zinc-900">
           {analysis.summaryTitle}
         </h2>
       </div>
@@ -67,14 +67,12 @@ export function AnalysisCard({ analysis, consultationId }: AnalysisCardProps) {
           {analysis.probableCauses.map((cause, i) => (
             <li key={i} className="space-y-1">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-medium text-text-primary">
-                  {cause.title}
-                </span>
+                <span className="font-medium text-zinc-900">{cause.title}</span>
                 <Badge variant={LIKELIHOOD_VARIANT[cause.likelihood]}>
                   {LIKELIHOOD_LABEL[cause.likelihood]}
                 </Badge>
               </div>
-              <p className="text-sm text-text-secondary">{cause.explanation}</p>
+              <p className="text-sm text-zinc-700">{cause.explanation}</p>
             </li>
           ))}
         </ul>
@@ -84,7 +82,7 @@ export function AnalysisCard({ analysis, consultationId }: AnalysisCardProps) {
         <h3 className="text-sm font-semibold uppercase tracking-wide text-sage-700">
           Qué hacer ahora
         </h3>
-        <ul className="ml-5 list-disc space-y-1 text-sm text-text-primary">
+        <ul className="ml-5 list-disc space-y-1 text-sm text-zinc-900 marker:text-sage-700">
           {analysis.recommendedActions.map((action, i) => (
             <li key={i}>{action}</li>
           ))}
@@ -95,9 +93,7 @@ export function AnalysisCard({ analysis, consultationId }: AnalysisCardProps) {
         <h3 className="text-sm font-semibold uppercase tracking-wide text-sage-700">
           Qué observar
         </h3>
-        <p className="text-sm text-text-primary">
-          {analysis.observationGuidance}
-        </p>
+        <p className="text-sm text-zinc-900">{analysis.observationGuidance}</p>
       </section>
 
       {(showBookingCta || isUrgent) && (
