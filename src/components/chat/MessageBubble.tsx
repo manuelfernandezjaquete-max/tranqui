@@ -60,7 +60,13 @@ export function MessageBubble({
 }: MessageBubbleProps) {
   if (role === "system") return null;
 
-  const displayContent = hideAnalysis ? stripAnalysisBlock(content) : content;
+  // Always strip — the <analysis> block is an internal protocol artifact
+  // and must never reach the user. The hideAnalysis prop is a no-op kept
+  // for forward compat. stripAnalysisBlock handles partial streams too:
+  // if the opening tag has arrived but the closing tag hasn't, we cut
+  // everything from the opening tag forward.
+  void hideAnalysis;
+  const displayContent = stripAnalysisBlock(content);
   const showCursor = isStreaming && role === "assistant";
   const trimmed = displayContent.trim();
 
