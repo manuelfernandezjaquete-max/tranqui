@@ -43,6 +43,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# generated convex artifacts
-/convex/_generated
+# generated convex artifacts (clinicalSkill is regenerated via postinstall;
+# convex/_generated is committed so Vercel builds don't need a Convex deploy key)
 /convex/lib/clinicalSkill.generated.ts
