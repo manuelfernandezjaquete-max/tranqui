@@ -8,8 +8,14 @@
  * @module
  */
 
+import type * as ai from "../ai.js";
+import type * as consultations from "../consultations.js";
 import type * as lib_auth from "../lib/auth.js";
 import type * as lib_clinicalSkill from "../lib/clinicalSkill.js";
+import type * as lib_disclaimerText from "../lib/disclaimerText.js";
+import type * as lib_prompt from "../lib/prompt.js";
+import type * as lib_rateLimit from "../lib/rateLimit.js";
+import type * as messages from "../messages.js";
 import type * as pets from "../pets.js";
 import type * as users from "../users.js";
 
@@ -20,8 +26,14 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  ai: typeof ai;
+  consultations: typeof consultations;
   "lib/auth": typeof lib_auth;
   "lib/clinicalSkill": typeof lib_clinicalSkill;
+  "lib/disclaimerText": typeof lib_disclaimerText;
+  "lib/prompt": typeof lib_prompt;
+  "lib/rateLimit": typeof lib_rateLimit;
+  messages: typeof messages;
   pets: typeof pets;
   users: typeof users;
 }>;
@@ -52,4 +64,6 @@ export declare const internal: FilterApi<
   FunctionReference<any, "internal">
 >;
 
-export declare const components: {};
+export declare const components: {
+  rateLimiter: import("@convex-dev/rate-limiter/_generated/component.js").ComponentApi<"rateLimiter">;
+};
