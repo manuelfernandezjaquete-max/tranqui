@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import { Bot } from "lucide-react";
 import { StreamingCursor } from "./StreamingCursor";
 import { cn } from "@/lib/utils";
@@ -23,6 +24,34 @@ function stripAnalysisBlock(content: string): string {
   );
 }
 
+// Lightweight markdown: render **bold** and *italic* spans without
+// shipping a full markdown lib. Anything else stays as plain text.
+function renderInlineMarkdown(text: string) {
+  const tokens: Array<string | { kind: "bold" | "italic"; text: string }> = [];
+  const re = /\*\*([^*]+)\*\*|\*([^*]+)\*/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      tokens.push(text.slice(lastIndex, match.index));
+    }
+    if (match[1] !== undefined) {
+      tokens.push({ kind: "bold", text: match[1] });
+    } else if (match[2] !== undefined) {
+      tokens.push({ kind: "italic", text: match[2] });
+    }
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < text.length) {
+    tokens.push(text.slice(lastIndex));
+  }
+  return tokens.map((t, i) => {
+    if (typeof t === "string") return <Fragment key={i}>{t}</Fragment>;
+    if (t.kind === "bold") return <strong key={i}>{t.text}</strong>;
+    return <em key={i}>{t.text}</em>;
+  });
+}
+
 export function MessageBubble({
   role,
   content,
@@ -40,7 +69,7 @@ export function MessageBubble({
       <div className="flex justify-end" aria-live="off">
         <div
           className={cn(
-            "max-w-[75%] whitespace-pre-wrap break-words rounded-2xl bg-coral-100 px-4 py-3 text-sm text-text-primary",
+            "max-w-[75%] whitespace-pre-wrap break-words rounded-2xl bg-coral-100 px-4 py-3 text-sm text-zinc-900",
             "rounded-br-sm",
           )}
         >
@@ -63,7 +92,7 @@ export function MessageBubble({
       </div>
       <div
         className={cn(
-          "max-w-[75%] whitespace-pre-wrap break-words rounded-2xl bg-sage-100 px-4 py-3 text-sm text-text-primary",
+          "max-w-[75%] whitespace-pre-wrap break-words rounded-2xl bg-sage-100 px-4 py-3 text-sm leading-relaxed text-zinc-900",
           "rounded-bl-sm",
         )}
       >
@@ -71,7 +100,7 @@ export function MessageBubble({
           <StreamingCursor />
         ) : (
           <>
-            {displayContent}
+            {renderInlineMarkdown(displayContent)}
             {showCursor && <StreamingCursor />}
           </>
         )}
