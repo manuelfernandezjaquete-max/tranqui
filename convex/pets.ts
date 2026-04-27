@@ -1,5 +1,5 @@
 import { v, ConvexError } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { mutation, query, internalQuery } from "./_generated/server";
 import { requireHousehold } from "./lib/auth";
 
 const petCoreFields = {
@@ -162,6 +162,38 @@ export const update = mutation({
       updatedAt: Date.now(),
     });
     return null;
+  },
+});
+
+// Internal — used by ai.ts to fetch pet context for the prompt.
+export const _internalGetForPrompt = internalQuery({
+  args: { petId: v.id("pets") },
+  returns: v.union(
+    v.object({
+      name: v.string(),
+      species: v.union(v.literal("dog"), v.literal("cat")),
+      breed: v.optional(v.string()),
+      sex: v.optional(v.union(v.literal("male"), v.literal("female"))),
+      neutered: v.optional(v.boolean()),
+      birthYear: v.optional(v.number()),
+      weightKg: v.optional(v.number()),
+      knownAllergies: v.optional(v.string()),
+    }),
+    v.null(),
+  ),
+  handler: async (ctx, args) => {
+    const pet = await ctx.db.get(args.petId);
+    if (!pet || pet.deletedAt !== undefined) return null;
+    return {
+      name: pet.name,
+      species: pet.species,
+      breed: pet.breed,
+      sex: pet.sex,
+      neutered: pet.neutered,
+      birthYear: pet.birthYear,
+      weightKg: pet.weightKg,
+      knownAllergies: pet.knownAllergies,
+    };
   },
 });
 
