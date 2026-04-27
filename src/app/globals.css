@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Brand palette */
+  --color-cream-50: #f5f1e8;
+  --color-cream-100: #faf7f0;
+  --color-cream-200: #ede7d9;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-sage-200: #c7d3cb;
+  --color-sage-500: #7a9080;
+  --color-sage-700: #5c6f62;
+
+  --color-coral-100: #f8e0d2;
+  --color-coral-400: #e89b7b;
+  --color-coral-600: #c77855;
+
+  /* Semantic */
+  --color-tranqui-success: #5a8b6b;
+  --color-tranqui-warning: #d4a04a;
+  --color-tranqui-danger: #c9412a;
+  --color-tranqui-info: #6b8aa8;
+
+  /* Surface tokens — used by body, cards, etc. */
+  --color-bg-base: #f5f1e8;
+  --color-bg-elevated: #faf7f0;
+  --color-bg-muted: #ede7d9;
+
+  /* Text tokens */
+  --color-text-primary: #2c2a26;
+  --color-text-secondary: #6b6862;
+  --color-text-inverse: #faf7f0;
+
+  /* Borders */
+  --color-border-default: #ede7d9;
+  --color-border-strong: #c7d3cb;
+
+  /* Typography */
+  --font-sans: var(--font-inter), "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-fraunces), "Fraunces", "Inter", serif;
+  --font-mono: var(--font-jetbrains-mono), "JetBrains Mono", monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 2rem;
+  --text-4xl: 2.5rem;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 0.10);
+
+  /* Easings */
+  --ease-tranqui: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-tranqui-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-bg-base: #1f1d1a;
+    --color-bg-elevated: #2c2a26;
+    --color-bg-muted: #3a3733;
+    --color-text-primary: #f5f1e8;
+    --color-text-secondary: #b5b0a6;
+    --color-text-inverse: #2c2a26;
+    --color-border-default: #3a3733;
+    --color-border-strong: #524e48;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background: var(--color-bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
