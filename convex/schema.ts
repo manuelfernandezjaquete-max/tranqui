@@ -133,4 +133,70 @@ export default defineSchema({
     // We track per calendar month; reset by inspecting lastUsedAt's month.
     periodStartedAt: v.number(),
   }).index("by_email", ["email"]),
+
+  // Veterinarians — extended profile for users with role: "vet".
+  veterinarians: defineTable({
+    userId: v.id("users"),
+    fullName: v.string(),
+    licenseNumber: v.string(),
+    specialty: v.optional(v.string()),
+    bio: v.optional(v.string()),
+    photoUrl: v.optional(v.string()),
+    timezone: v.string(),
+    isActive: v.boolean(),
+    revenueShareBps: v.number(),
+    createdAt: v.number(),
+  })
+    .index("by_user", ["userId"])
+    .index("by_active", ["isActive"]),
+
+  // Bookable 30-min windows (20-min consultation + 10-min buffer).
+  availabilitySlots: defineTable({
+    veterinarianId: v.id("veterinarians"),
+    startsAt: v.number(),
+    endsAt: v.number(),
+    status: v.union(
+      v.literal("open"),
+      v.literal("booked"),
+      v.literal("blocked"),
+    ),
+    bookingId: v.optional(v.id("bookings")),
+    createdAt: v.number(),
+  })
+    .index("by_vet_and_start", ["veterinarianId", "startsAt"])
+    .index("by_status_and_start", ["status", "startsAt"]),
+
+  // Confirmed video consultations.
+  bookings: defineTable({
+    consultationId: v.id("consultations"),
+    petId: v.id("pets"),
+    requesterUserId: v.id("users"),
+    veterinarianId: v.id("veterinarians"),
+    slotId: v.id("availabilitySlots"),
+    scheduledStartAt: v.number(),
+    scheduledEndAt: v.number(),
+    status: v.union(
+      v.literal("confirmed"),
+      v.literal("in_progress"),
+      v.literal("completed"),
+      v.literal("canceled_by_user"),
+      v.literal("canceled_by_vet"),
+      v.literal("no_show_user"),
+      v.literal("no_show_vet"),
+    ),
+    paymentMode: v.union(
+      v.literal("included_in_subscription"),
+      v.literal("paid_extra"),
+    ),
+    extraPaymentEur: v.optional(v.number()),
+    polarOrderId: v.optional(v.string()),
+    dailyRoomUrl: v.optional(v.string()),
+    vetNotesAfter: v.optional(v.string()),
+    createdAt: v.number(),
+    completedAt: v.optional(v.number()),
+  })
+    .index("by_user", ["requesterUserId"])
+    .index("by_vet", ["veterinarianId"])
+    .index("by_consultation", ["consultationId"])
+    .index("by_status", ["status"]),
 });

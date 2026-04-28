@@ -1,5 +1,5 @@
 import { v, ConvexError } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { mutation, query, internalQuery } from "./_generated/server";
 import { requireUser } from "./lib/auth";
 
 export const bootstrap = mutation({
@@ -118,6 +118,24 @@ export const updateProfile = mutation({
       await ctx.db.patch(user._id, patch);
     }
     return null;
+  },
+});
+
+// Internal — used by email.ts to look up the booking owner.
+export const _internalGet = internalQuery({
+  args: { userId: v.id("users") },
+  returns: v.union(
+    v.object({
+      _id: v.id("users"),
+      email: v.string(),
+      name: v.optional(v.string()),
+    }),
+    v.null(),
+  ),
+  handler: async (ctx, args) => {
+    const u = await ctx.db.get(args.userId);
+    if (!u) return null;
+    return { _id: u._id, email: u.email, name: u.name };
   },
 });
 
