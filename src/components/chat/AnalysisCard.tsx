@@ -99,14 +99,8 @@ export function AnalysisCard({ analysis, consultationId }: AnalysisCardProps) {
       {(showBookingCta || isUrgent) && (
         <div className="flex flex-wrap gap-3 border-t border-sage-200 pt-4">
           {showBookingCta && (
-            <Link
-              href={`/bookings/new?consultationId=${consultationId}`}
-              aria-disabled
-              tabIndex={-1}
-              onClick={(e) => e.preventDefault()}
-              title="Disponible en Fase 3"
-            >
-              <Button disabled>Reservar veterinario</Button>
+            <Link href={`/bookings/new?consultationId=${consultationId}`}>
+              <Button>Reservar veterinario</Button>
             </Link>
           )}
           {isUrgent && (
