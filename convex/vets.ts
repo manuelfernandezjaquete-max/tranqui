@@ -82,8 +82,9 @@ export const _internalGet = internalQuery({
     v.null(),
   ),
   handler: async (ctx, args) => {
-    const v = await ctx.db.get(args.veterinarianId);
-    if (!v) return null;
-    return { _id: v._id, fullName: v.fullName, userId: v.userId };
+    const vet = await ctx.db.get(args.veterinarianId);
+    if (!vet) return null;
+    return { _id: vet._id, fullName: vet.fullName, userId: vet.userId };
   },
 });
+

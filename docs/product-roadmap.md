@@ -368,7 +368,7 @@
 > **Phase prompt:**
 > *"Read docs/product-roadmap.md and find Phase 5. Read only the Reference sections listed above from docs/prd.md and docs/product-vision.md. Continue from the first unchecked task. Mark each task complete. After all tasks, push as `phase-5/polish-and-launch-prep` and open a PR for review."*
 
-- [ ] **TASK-071** — Build the marketing landing page `/`.
+- [x] **TASK-071** — Build the marketing landing page `/`.
   Files: `src/app/(marketing)/page.tsx`, `src/components/marketing/Hero.tsx`, `TrustStrip.tsx`, `PricingTeaser.tsx`, `FAQAccordion.tsx`, `Footer.tsx`.
   Notes: Per `docs/prd.md § 8 → Landing`. Copy lifted from Vision § 4 (positioning, headlines, value props, FAQ from objection handlers). Primary CTA "Empezar gratis" → `/consult/new`. Secondary "Iniciar sesión" opens Clerk sign-in modal.
 
