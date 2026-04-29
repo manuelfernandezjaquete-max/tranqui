@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 export interface MessageBubbleProps {
   role: "user" | "assistant" | "system";
   content: string;
+  imageUrl?: string | null;
   isStreaming?: boolean;
   hideAnalysis?: boolean;
 }
@@ -55,6 +56,7 @@ function renderInlineMarkdown(text: string) {
 export function MessageBubble({
   role,
   content,
+  imageUrl,
   isStreaming,
   hideAnalysis,
 }: MessageBubbleProps) {
@@ -75,11 +77,21 @@ export function MessageBubble({
       <div className="flex justify-end" aria-live="off">
         <div
           className={cn(
-            "max-w-[75%] whitespace-pre-wrap break-words rounded-2xl bg-coral-100 px-4 py-3 text-sm text-zinc-900",
+            "max-w-[75%] space-y-2 rounded-2xl bg-coral-100 px-4 py-3 text-sm text-zinc-900",
             "rounded-br-sm",
           )}
         >
-          {displayContent}
+          {imageUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={imageUrl}
+              alt="Imagen adjunta"
+              className="max-h-64 w-full rounded-lg object-contain"
+            />
+          )}
+          {trimmed.length > 0 && (
+            <p className="whitespace-pre-wrap break-words">{displayContent}</p>
+          )}
         </div>
       </div>
     );

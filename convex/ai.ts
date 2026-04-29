@@ -125,6 +125,16 @@ export const continueConversation = internalAction({
       { consultationId: args.consultationId },
     );
 
+    // Resolve image URLs for any messages that have an attached photo.
+    // ctx.storage.getUrl returns a signed public URL valid for ~1 hour.
+    const imageUrls = new Map<string, string>();
+    for (const m of messages) {
+      if (m.imageStorageId) {
+        const url = await ctx.storage.getUrl(m.imageStorageId);
+        if (url) imageUrls.set(m._id, url);
+      }
+    }
+
     const systemPrompt = buildSystemPrompt({
       pet: petContext,
       recentConsultations: [], // TODO Phase 2.1: include via internal query
@@ -157,6 +167,37 @@ export const continueConversation = internalAction({
     let inputTokens = 0;
     let outputTokens = 0;
 
+    // Build message content — for user messages with an image, send a
+    // multipart content array [image, text]; otherwise send plain text.
+    type AnthropicMessage = {
+      role: "user" | "assistant";
+      content:
+        | string
+        | Array<
+            | { type: "text"; text: string }
+            | { type: "image"; source: { type: "url"; url: string } }
+          >;
+    };
+
+    const anthropicMessages: AnthropicMessage[] = messages
+      .filter((m) => m.role === "user" || m.role === "assistant")
+      .map((m) => {
+        const imageUrl = imageUrls.get(m._id);
+        if (m.role === "user" && imageUrl) {
+          return {
+            role: "user" as const,
+            content: [
+              { type: "image" as const, source: { type: "url" as const, url: imageUrl } },
+              { type: "text" as const, text: m.content || "¿Qué observas en esta imagen?" },
+            ],
+          };
+        }
+        return {
+          role: m.role as "user" | "assistant",
+          content: m.content,
+        };
+      });
+
     try {
       const stream = client.messages.stream({
         model: MODEL,
@@ -168,12 +209,7 @@ export const continueConversation = internalAction({
             cache_control: { type: "ephemeral" },
           },
         ],
-        messages: messages
-          .filter((m) => m.role === "user" || m.role === "assistant")
-          .map((m) => ({
-            role: m.role as "user" | "assistant",
-            content: m.content,
-          })),
+        messages: anthropicMessages,
       });
 
       for await (const event of stream) {

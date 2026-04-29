@@ -39,6 +39,7 @@ export function MessageList({ consultationId, accessToken }: MessageListProps) {
           <MessageBubble
             role={m.role}
             content={m.content}
+            imageUrl={m.imageUrl}
             isStreaming={m.isStreaming}
             hideAnalysis={m.isFinalAnalysis}
           />

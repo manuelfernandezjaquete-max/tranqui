@@ -45,6 +45,9 @@ const messageDoc = v.object({
   consultationId: v.id("consultations"),
   role: messageRole,
   content: v.string(),
+  imageStorageId: v.optional(v.id("_storage")),
+  // Resolved public URL for the image (if present) — computed in the query
+  imageUrl: v.optional(v.string()),
   isStreaming: v.boolean(),
   isFinalAnalysis: v.boolean(),
   structuredAnalysis: v.optional(structuredAnalysis),
@@ -82,12 +85,31 @@ export const listByConsultation = query({
     }
     if (!isAuthorized) return [];
 
-    return await ctx.db
+    const rows = await ctx.db
       .query("messages")
       .withIndex("by_consultation", (q) =>
         q.eq("consultationId", args.consultationId),
       )
       .collect();
+
+    // Resolve storage URLs for any messages with an attached image.
+    return await Promise.all(
+      rows.map(async (m) => {
+        const imageUrl = m.imageStorageId
+          ? await ctx.storage.getUrl(m.imageStorageId)
+          : undefined;
+        return { ...m, imageUrl: imageUrl ?? undefined };
+      }),
+    );
+  },
+});
+
+// Generate a short-lived upload URL for direct client → Convex storage upload.
+export const generateUploadUrl = mutation({
+  args: {},
+  returns: v.string(),
+  handler: async (ctx) => {
+    return await ctx.storage.generateUploadUrl();
   },
 });
 
@@ -95,6 +117,7 @@ export const appendUserMessage = mutation({
   args: {
     consultationId: v.id("consultations"),
     content: v.string(),
+    imageStorageId: v.optional(v.id("_storage")),
     accessToken: v.optional(v.string()),
   },
   returns: v.id("messages"),
@@ -157,6 +180,7 @@ export const appendUserMessage = mutation({
       consultationId: args.consultationId,
       role: "user",
       content: trimmed,
+      imageStorageId: args.imageStorageId,
       isStreaming: false,
       isFinalAnalysis: false,
       createdAt: Date.now(),
