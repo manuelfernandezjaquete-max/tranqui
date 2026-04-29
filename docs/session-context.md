@@ -46,7 +46,7 @@ Resuelve el 70-80% de dudas con IA (Claude Sonnet). Para el resto, deriva a vete
 
 ## Estado del roadmap (29 abril 2026)
 
-**59/88 tasks completas.**
+**63/88 tasks completas.**
 
 ### ✅ Completadas
 
@@ -56,11 +56,10 @@ Resuelve el 70-80% de dudas con IA (Claude Sonnet). Para el resto, deriva a vete
 | Fase 1 — Pet Profiles | TASK-017→025 | ✅ Merged PR #2 |
 | Fase 2 — Core Consultation | TASK-026→042 | ✅ Merged PR #4+5 |
 | Fase 3 — Vet Booking & Video | TASK-045→057 | ✅ Merged PR #6 |
-| Fase 5 — Landing | TASK-071, 072, 073 | ✅ PR #7 abierto (phase-5/landing) |
+| Fase 5 — Marketing | TASK-071→074 | ✅ PR #7 abierto (phase-5/landing) |
 
 ### ⬜ Pendientes en PR #7 (branch: `phase-5/landing`)
 
-- TASK-074 — Polish empty/loading/error states
 - TASK-075 — Form validation feedback
 - TASK-076 — Accessibility pass
 - TASK-077 — Performance pass
@@ -166,13 +165,13 @@ RESEND_API_KEY         ✅ seteada
 
 ## Próximas tasks activas
 
-Al retomar, continuar desde **TASK-074** en branch `phase-5/landing`:
+Al retomar, continuar desde **TASK-075** en branch `phase-5/landing`:
 
 ```
-TASK-074 — Polish empty/loading/error states
 TASK-075 — Form validation
 TASK-078 — Vercel Analytics + Sentry
 TASK-082 — Dominio tranqui.app (o similar) en Cloudflare/Namecheap
+TASK-083 — Push Phase 5 PR + merge
 ```
 
 **Prompt para retomar:**
