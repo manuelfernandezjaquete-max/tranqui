@@ -410,10 +410,10 @@
 - [x] **TASK-081** — Final disclaimer / safety surface audit.
   Notes: Manually verify (1) disclaimer banner visible at start of every consultation type (free-trial, signed-in, vet-side), (2) disclaimer footer in every analysis card, (3) `/legal/disclaimer` matches the constant, (4) URGENTE bypasses paywall in free-trial post-limit, (5) booking flow does not allow paywall during URGENTE flow. Document the audit in `docs/launch-readiness.md`.
 
-- [ ] **TASK-082** — Domain + production deploy.
+- [ ] **TASK-082** — Domain + production deploy. *(skipped for now — using tranqui-eight.vercel.app; domain deferred post App Store)*
   Notes: Configure DNS for `tranqui.app` (or chosen domain) → Vercel. Promote production build. Confirm Convex prod deployment env vars (Anthropic key, Polar live keys, Daily live key, Resend live key, Clerk live keys). Run smoke tests on production: signup, free trial consultation, paid signup with live Polar key (using a personal card; refund), booking with the partner-vet account.
 
-- [ ] **TASK-083** — Push Phase 5 as a PR.
+- [x] **TASK-083** — Push Phase 5 as a PR. *(PR #7 merged)*
   Notes: Branch `phase-5/polish-and-launch-prep`. Title "Phase 5: Polish, Trust & Launch Prep". Merge only after the launch-readiness checklist passes.
 
 -----
