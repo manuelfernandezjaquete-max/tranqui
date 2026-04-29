@@ -75,6 +75,11 @@
     --color-text-inverse: #2c2a26;
     --color-border-default: #3a3733;
     --color-border-strong: #524e48;
+
+    /* Chat bubble surfaces — darken in dark mode for contrast */
+    --color-coral-100: #3d2a22;
+    --color-sage-100: #1e2d27;
+    --color-sage-200: #263830;
   }
 }
 
