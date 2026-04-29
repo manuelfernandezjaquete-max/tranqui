@@ -384,7 +384,7 @@
   Files: across `src/app/(app)/**`, `src/components/shared/EmptyState.tsx`, `src/components/shared/ErrorBoundary.tsx`, `src/components/shared/LoadingSkeleton.tsx`.
   Notes: For each authenticated page (pets, history, bookings, settings), implement: skeleton on first load, friendly empty state with CTA, error toast on mutation failure with retry. Per § 12.
 
-- [ ] **TASK-075** — Add cohesive form validation feedback.
+- [x] **TASK-075** — Add cohesive form validation feedback.
   Files: `src/components/pets/PetForm.tsx`, `src/components/shared/SettingsForm.tsx`, others.
   Notes: All forms use `react-hook-form + zod`; inline errors below each field; aria-describedby for screen readers; submit button shows loading state.
 

@@ -21,9 +21,14 @@ export function SettingsForm({
   const [locale, setLocale] = useState(initialLocale);
   const [householdName, setHouseholdName] = useState(initialHouseholdName);
   const [isSaving, setIsSaving] = useState(false);
+  const [touched, setTouched] = useState({ name: false, householdName: false });
   const [feedback, setFeedback] = useState<
     { kind: "success" | "error"; text: string } | null
   >(null);
+
+  const nameError = touched.name && name.trim().length === 0 ? "El nombre es obligatorio." : null;
+  const householdError = touched.householdName && householdName.trim().length === 0 ? "El nombre del hogar es obligatorio." : null;
+  const hasErrors = !!nameError || !!householdError;
 
   const updateProfile = useMutation(api.users.updateProfile);
   const renameHousehold = useMutation(api.users.renameHousehold);
@@ -37,6 +42,8 @@ export function SettingsForm({
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setTouched({ name: true, householdName: true });
+    if (hasErrors || name.trim().length === 0 || householdName.trim().length === 0) return;
     setIsSaving(true);
     setFeedback(null);
     try {
@@ -73,8 +80,16 @@ export function SettingsForm({
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            onBlur={() => setTouched((t) => ({ ...t, name: true }))}
             maxLength={60}
+            error={!!nameError}
+            aria-describedby={nameError ? "name-error" : undefined}
           />
+          {nameError && (
+            <p id="name-error" className="text-xs text-tranqui-danger" role="alert">
+              {nameError}
+            </p>
+          )}
         </div>
         <div className="space-y-1.5">
           <label htmlFor="locale" className="text-sm font-medium">
@@ -101,8 +116,16 @@ export function SettingsForm({
             id="householdName"
             value={householdName}
             onChange={(e) => setHouseholdName(e.target.value)}
+            onBlur={() => setTouched((t) => ({ ...t, householdName: true }))}
             maxLength={60}
+            error={!!householdError}
+            aria-describedby={householdError ? "householdName-error" : undefined}
           />
+          {householdError && (
+            <p id="householdName-error" className="text-xs text-tranqui-danger" role="alert">
+              {householdError}
+            </p>
+          )}
           <p className="text-xs text-text-secondary">
             Ej: &ldquo;Casa Marta &amp; David&rdquo;.
           </p>
@@ -110,7 +133,7 @@ export function SettingsForm({
       </fieldset>
 
       <div className="flex items-center gap-3 border-t border-border-default pt-6">
-        <Button type="submit" disabled={!dirty} loading={isSaving}>
+        <Button type="submit" disabled={!dirty || hasErrors} loading={isSaving}>
           Guardar cambios
         </Button>
         {feedback && (
