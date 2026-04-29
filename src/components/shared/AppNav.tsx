@@ -17,9 +17,10 @@ export function AppNav() {
 
   return (
     <header className="sticky top-0 z-10 border-b border-border-default bg-bg-elevated/80 backdrop-blur">
-      <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+      <nav aria-label="Navegación principal" className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
         <Link
           href="/pets"
+          aria-label="Tranqui — inicio"
           className="font-display text-xl font-semibold tracking-tight text-sage-700"
         >
           Tranqui
@@ -33,6 +34,7 @@ export function AppNav() {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  aria-current={isActive ? "page" : undefined}
                   className={cn(
                     "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
                     isActive

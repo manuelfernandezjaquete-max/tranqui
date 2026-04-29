@@ -7,6 +7,7 @@ import { api } from "../../../../convex/_generated/api";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { EmptyState } from "@/components/shared/EmptyState";
+import { Skeleton } from "@/components/shared/Skeleton";
 
 const STATUS_LABEL: Record<string, string> = {
   confirmed: "Confirmada",
@@ -48,7 +49,7 @@ export default function BookingsPage() {
       {bookings === undefined ? (
         <div className="space-y-3">
           {[0, 1, 2].map((i) => (
-            <div key={i} className="h-16 animate-pulse rounded-lg bg-bg-muted" />
+            <Skeleton key={i} className="h-16" />
           ))}
         </div>
       ) : bookings.length === 0 ? (

@@ -3,6 +3,8 @@
 import { useQuery } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { SettingsForm } from "@/components/shared/SettingsForm";
+import { Skeleton } from "@/components/shared/Skeleton";
+import { ErrorState } from "@/components/shared/ErrorState";
 
 export default function SettingsPage() {
   const me = useQuery(api.users.me);
@@ -19,11 +21,17 @@ export default function SettingsPage() {
       </header>
 
       {me === undefined ? (
-        <div className="h-64 animate-pulse rounded-lg bg-bg-muted" />
+        <div className="space-y-3">
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12" />
+          <Skeleton className="h-12 w-1/2" />
+        </div>
       ) : me === null ? (
-        <p className="text-text-secondary">
-          No se pudo cargar tu perfil. Refresca la página.
-        </p>
+        <ErrorState
+          title="No se pudo cargar tu perfil"
+          description="Refresca la página o contacta con soporte si el problema persiste."
+          onRetry={() => window.location.reload()}
+        />
       ) : (
         <SettingsForm
           initialName={me.name ?? ""}

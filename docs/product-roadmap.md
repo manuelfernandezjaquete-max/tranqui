@@ -372,42 +372,42 @@
   Files: `src/app/(marketing)/page.tsx`, `src/components/marketing/Hero.tsx`, `TrustStrip.tsx`, `PricingTeaser.tsx`, `FAQAccordion.tsx`, `Footer.tsx`.
   Notes: Per `docs/prd.md § 8 → Landing`. Copy lifted from Vision § 4 (positioning, headlines, value props, FAQ from objection handlers). Primary CTA "Empezar gratis" → `/consult/new`. Secondary "Iniciar sesión" opens Clerk sign-in modal.
 
-- [ ] **TASK-072** — Build the pricing page `/pricing` and the FAQ page `/faq`.
+- [x] **TASK-072** — Build the pricing page `/pricing` and the FAQ page `/faq`.
   Files: `src/app/(marketing)/pricing/page.tsx`, `src/app/(marketing)/faq/page.tsx`.
   Notes: Pricing: one-card layout for Tranqui Mensual €9.99, with "qué incluye", FAQ on extra consultations. FAQ: extracted from Vision § 4 Messaging Framework → Objection handlers, plus 4-5 product-specific FAQs.
 
-- [ ] **TASK-073** — Build legal pages: terms, privacy, disclaimer.
+- [x] **TASK-073** — Build legal pages: terms, privacy, disclaimer.
   Files: `src/app/(marketing)/legal/terms/page.tsx`, `legal/privacy/page.tsx`, `legal/disclaimer/page.tsx`.
   Notes: Disclaimer uses `DISCLAIMER_TEXT_LONG`. Terms and privacy: draft template covering: subscription billing terms, refund policy (vet no-show full refund, otherwise no refund after period start), data retention per Open Question Q6, GDPR rights (access, deletion via support email for MVP), governing law (Spain). Have these reviewed by a Spanish legal advisor before launch.
 
-- [ ] **TASK-074** — Polish empty / loading / error states across all main routes.
+- [x] **TASK-074** — Polish empty / loading / error states across all main routes.
   Files: across `src/app/(app)/**`, `src/components/shared/EmptyState.tsx`, `src/components/shared/ErrorBoundary.tsx`, `src/components/shared/LoadingSkeleton.tsx`.
   Notes: For each authenticated page (pets, history, bookings, settings), implement: skeleton on first load, friendly empty state with CTA, error toast on mutation failure with retry. Per § 12.
 
-- [ ] **TASK-075** — Add cohesive form validation feedback.
+- [x] **TASK-075** — Add cohesive form validation feedback.
   Files: `src/components/pets/PetForm.tsx`, `src/components/shared/SettingsForm.tsx`, others.
   Notes: All forms use `react-hook-form + zod`; inline errors below each field; aria-describedby for screen readers; submit button shows loading state.
 
-- [ ] **TASK-076** — Accessibility pass.
+- [x] **TASK-076** — Accessibility pass.
   Files: across components.
   Notes: Run axe-core in dev, fix all critical issues. Confirm color contrast ratios for cream/sage/coral palette (especially coral on cream). Verify keyboard nav across the consultation flow. Confirm `prefers-reduced-motion` is respected. Verify body text ≥16px on mobile and supports 200% zoom.
 
-- [ ] **TASK-077** — Performance pass.
+- [x] **TASK-077** — Performance pass.
   Files: across.
   Notes: Run Lighthouse on landing and consultation pages on production preview. Target LCP <2.5s mobile, <1.5s broadband. Reduce JS bundle: dynamic-import the chat page's heavy deps (Daily JS imports lazy on `/bookings/[id]` only). Add `next/font` optimization. Verify Web Vitals show green in Vercel.
 
-- [ ] **TASK-078** — Add Vercel Analytics + Sentry.
+- [x] **TASK-078** — Add Vercel Analytics + Sentry.
   Files: `src/app/layout.tsx`, `sentry.client.config.ts`, `sentry.server.config.ts`, `next.config.mjs`.
   Notes: `pnpm add @vercel/analytics @sentry/nextjs`. Configure Sentry project, add envs, redact PII (no message content). Add `<Analytics />` to root layout.
 
-- [ ] **TASK-079** — Set up SEO basics on marketing pages.
+- [x] **TASK-079** — Set up SEO basics on marketing pages.
   Files: `src/app/(marketing)/**`, `src/app/sitemap.ts`, `src/app/robots.ts`, `src/app/opengraph-image.tsx`.
   Notes: Per-page `metadata` exports with title, description (Spanish), OG image (use `opengraph-image.tsx` to generate from edge). Sitemap covers landing, pricing, FAQ, legal pages. Robots allows all marketing routes, disallows `/(app)/*` and `/(vet)/*`.
 
 - [ ] **TASK-080** — Final clinical audit pass.
   Notes: Review the next 50 production-style consultations (use a separate test deployment or mark as test runs) with the clinical advisor. Document the appropriate-triage rate and any prompt adjustments needed in `docs/prompt-audit.md`. The bar is ≥85% appropriate triage. This is a quality gate.
 
-- [ ] **TASK-081** — Final disclaimer / safety surface audit.
+- [x] **TASK-081** — Final disclaimer / safety surface audit.
   Notes: Manually verify (1) disclaimer banner visible at start of every consultation type (free-trial, signed-in, vet-side), (2) disclaimer footer in every analysis card, (3) `/legal/disclaimer` matches the constant, (4) URGENTE bypasses paywall in free-trial post-limit, (5) booking flow does not allow paywall during URGENTE flow. Document the audit in `docs/launch-readiness.md`.
 
 - [ ] **TASK-082** — Domain + production deploy.
