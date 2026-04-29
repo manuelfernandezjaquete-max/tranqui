@@ -372,7 +372,7 @@
   Files: `src/app/(marketing)/page.tsx`, `src/components/marketing/Hero.tsx`, `TrustStrip.tsx`, `PricingTeaser.tsx`, `FAQAccordion.tsx`, `Footer.tsx`.
   Notes: Per `docs/prd.md § 8 → Landing`. Copy lifted from Vision § 4 (positioning, headlines, value props, FAQ from objection handlers). Primary CTA "Empezar gratis" → `/consult/new`. Secondary "Iniciar sesión" opens Clerk sign-in modal.
 
-- [ ] **TASK-072** — Build the pricing page `/pricing` and the FAQ page `/faq`.
+- [x] **TASK-072** — Build the pricing page `/pricing` and the FAQ page `/faq`.
   Files: `src/app/(marketing)/pricing/page.tsx`, `src/app/(marketing)/faq/page.tsx`.
   Notes: Pricing: one-card layout for Tranqui Mensual €9.99, with "qué incluye", FAQ on extra consultations. FAQ: extracted from Vision § 4 Messaging Framework → Objection handlers, plus 4-5 product-specific FAQs.
 
