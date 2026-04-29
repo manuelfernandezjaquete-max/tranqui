@@ -32,6 +32,7 @@ Resuelve el 70-80% de dudas con IA (Claude Sonnet). Para el resto, deriva a vete
 | Email | Resend |
 | Pagos | Polar (pendiente — Fase 4 skipeada) |
 | Hosting | Vercel |
+| Monitoring | Sentry + Vercel Analytics |
 
 ---
 
@@ -46,7 +47,7 @@ Resuelve el 70-80% de dudas con IA (Claude Sonnet). Para el resto, deriva a vete
 
 ## Estado del roadmap (29 abril 2026)
 
-**63/88 tasks completas.**
+**Todo el código en `main`. Phase 5 completada y mergeada.**
 
 ### ✅ Completadas
 
@@ -56,33 +57,68 @@ Resuelve el 70-80% de dudas con IA (Claude Sonnet). Para el resto, deriva a vete
 | Fase 1 — Pet Profiles | TASK-017→025 | ✅ Merged PR #2 |
 | Fase 2 — Core Consultation | TASK-026→042 | ✅ Merged PR #4+5 |
 | Fase 3 — Vet Booking & Video | TASK-045→057 | ✅ Merged PR #6 |
-| Fase 5 — Marketing | TASK-071→074 | ✅ PR #7 abierto (phase-5/landing) |
+| Fase 5 — Polish & Launch | TASK-071→079, 081, 083 | ✅ PR #7 merged |
+| Feature — Consultation Photos | — | ✅ PR #9 merged |
+| Feature — Logo Westie | — | ✅ En main |
 
-### ⬜ Pendientes en PR #7 (branch: `phase-5/landing`)
+### ✅ Phase 5 tasks completadas
 
-- TASK-075 — Form validation feedback
-- TASK-076 — Accessibility pass
-- TASK-077 — Performance pass
-- TASK-078 — Vercel Analytics + Sentry
-- TASK-079 — SEO basics
-- TASK-080 — Final clinical audit
-- TASK-081 — Final disclaimer/safety audit
-- TASK-082 — Domain + production deploy
-- TASK-083 — Push Phase 5 PR
+- TASK-071 — Landing page ✅
+- TASK-072 — Pricing + FAQ ✅
+- TASK-073 — Legal pages (terms, privacy, disclaimer) ✅
+- TASK-074 — Empty/loading/error states (Skeleton, ErrorState) ✅
+- TASK-075 — Form validation (SettingsForm) ✅
+- TASK-076 — Accessibility pass (skip link, aria-*, reduced-motion) ✅
+- TASK-077 — Performance pass (next.config optimizations) ✅
+- TASK-078 — Vercel Analytics + Sentry ✅
+- TASK-079 — SEO (metadata, sitemap, robots, OG image) ✅
+- TASK-081 — Disclaimer/safety surface audit ✅
+- TASK-083 — Phase 5 PR merged ✅
 
-### ⏭️ Skipeadas (decisión consciente)
+### ⏭️ Pendientes / skipeadas
 
-- TASK-043 — Sample-prompt audit (hecho manualmente por Manu)
-- TASK-044, 059 — PRs de cierre de fase 2 y 3 (pendientes)
-- TASK-058 — Vet onboarding (parcialmente hecho, Daily.co billing pendiente)
+- TASK-058 — Vet onboarding: Carlota onboarded ✅, Daily.co billing ⚠️ pendiente
+- TASK-080 — Clinical audit con Carlota (50 consultas, ≥85% triage) — manual, pendiente
+- TASK-082 — Dominio — skipeado, usando tranqui-eight.vercel.app; deferred post App Store
 - **Fase 4 completa (TASK-060→070)** — Polar/pagos skipeada para post-launch
 
 ### ⏭️ Post-launch (Fase 6)
 
 - TASK-084 — Onboarding micro-flow
 - TASK-085 — Household invitations
-- TASK-086 — Pet photo upload
+- TASK-086 — Pet photo upload (profile pics — la subida en consulta ya está hecha)
 - TASK-087 — Admin/cost dashboard
+
+### 🆕 Features añadidas fuera del roadmap
+
+- **Fotos en consulta** — usuario adjunta foto en el chat → Claude analiza con visión. `messages.imageStorageId`, `generateUploadUrl`, ChatInput con 📎, MessageBubble renderiza imagen.
+- **Logo Westie** — SVG minimalista con cara de Westie + wordmark "tranqui". Integrado en Wordmark, AppNav, favicon (`src/app/icon.svg`).
+
+---
+
+## Vercel env vars
+
+```
+NEXT_PUBLIC_CONVEX_URL          ✅
+CONVEX_DEPLOYMENT               ✅
+NEXT_PUBLIC_CONVEX_SITE_URL     ✅
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY ✅
+CLERK_SECRET_KEY                ✅
+CLERK_JWT_ISSUER_DOMAIN         ✅
+NEXT_PUBLIC_SENTRY_DSN          ✅ (añadido 29/04/2026)
+NEXT_PUBLIC_APP_URL             ✅ https://tranqui-eight.vercel.app
+```
+
+## Convex env vars (prod: admired-hummingbird-875)
+
+```
+ANTHROPIC_API_KEY      ✅ seteada
+CLERK_JWT_ISSUER_DOMAIN ✅ https://upward-orca-32.clerk.accounts.dev
+DAILY_API_KEY          ✅ seteada
+RESEND_API_KEY         ✅ seteada
+```
+
+⚠️ **Rotar estas keys** — se expusieron en chat el 29/04/2026.
 
 ---
 
@@ -107,73 +143,73 @@ tranqui/
 │   ├── product-roadmap.md       ← checkboxes de todas las tasks
 │   ├── product-vision.md        ← estrategia, branding, design tokens (ES)
 │   ├── prd.md                   ← spec técnica completa (EN)
+│   ├── launch-readiness.md      ← checklist pre-launch + disclaimer audit
 │   └── session-context.md       ← este archivo
 ├── convex/
 │   ├── schema.ts                ← tablas: users, households, pets, consultations,
-│   │                               messages, veterinarians, availabilitySlots, bookings
-│   ├── ai.ts                    ← continueConversation action (Claude Sonnet streaming)
+│   │                               messages (+ imageStorageId), veterinarians,
+│   │                               availabilitySlots, bookings
+│   ├── ai.ts                    ← continueConversation (Claude Sonnet streaming + vision)
+│   ├── messages.ts              ← generateUploadUrl, appendUserMessage (+ imageStorageId)
 │   ├── vets.ts                  ← upgradeToVet, listActive
 │   ├── bookings.ts              ← create, cancel, markCompleted
 │   └── lib/
 │       ├── auth.ts              ← requireUser, requireHousehold
 │       └── permissions.ts       ← requireAdmin, requireVet
+├── public/
+│   ├── logo.svg                 ← logo principal (círculo Westie + wordmark horizontal)
+│   └── logo-westie.svg          ← versión anterior (deprecada)
 ├── src/
 │   ├── app/
+│   │   ├── icon.svg             ← favicon (círculo Westie cuadrado 200×200)
+│   │   ├── opengraph-image.tsx  ← OG image edge-rendered
+│   │   ├── sitemap.ts           ← sitemap.xml automático
+│   │   ├── robots.ts            ← robots.txt
 │   │   ├── (marketing)/         ← landing, pricing, faq, legal/*
 │   │   ├── (app)/               ← pets, history, bookings, settings, consult
 │   │   ├── (vet)/               ← dashboard, consultation/[bookingId]
 │   │   └── consult/             ← [consultationId], new (free trial)
 │   ├── components/
 │   │   ├── ui/                  ← Button, Input, Textarea, Card, Badge
-│   │   ├── chat/                ← TriageBadge, DisclaimerBanner, AnalysisCard
-│   │   ├── marketing/           ← MarketingNav, Wordmark, HeroPreview, LegalPage
-│   │   └── shared/              ← AppNav, ConvexClientProvider, UserBootstrap
+│   │   ├── chat/                ← TriageBadge, DisclaimerBanner, AnalysisCard,
+│   │   │                           ChatInput (con 📎 foto), MessageBubble (renderiza imagen)
+│   │   ├── marketing/           ← MarketingNav, Wordmark (usa logo.svg), HeroPreview, LegalPage
+│   │   └── shared/              ← AppNav (usa logo.svg), ConvexClientProvider, UserBootstrap,
+│   │                               Skeleton, ErrorState
 │   └── lib/
 │       ├── disclaimer.ts        ← DISCLAIMER_TEXT_SHORT, DISCLAIMER_TEXT_LONG
 │       └── utils.ts             ← cn()
+├── sentry.client.config.ts      ← Sentry frontend (PII-safe)
+├── sentry.server.config.ts      ← Sentry server
+├── sentry.edge.config.ts        ← Sentry edge
 └── skills/
     └── agente-veterinario-ia.md ← clinical brain (embebido en system prompt)
 ```
 
 ---
 
-## Convex env vars (prod: admired-hummingbird-875)
-
-```
-ANTHROPIC_API_KEY      ✅ seteada
-CLERK_JWT_ISSUER_DOMAIN ✅ https://upward-orca-32.clerk.accounts.dev
-DAILY_API_KEY          ✅ seteada
-RESEND_API_KEY         ✅ seteada
-```
-
-⚠️ **Rotar estas keys** — se expusieron en chat el 29/04/2026.
-
----
-
 ## Decisiones tomadas (no re-preguntar)
 
-- **Plataforma:** web app mobile-first, no nativa (PWA para móvil)
+- **Plataforma:** web app mobile-first → próximo paso: App Store (React Native / Expo o Capacitor)
 - **Idioma UI:** español de España (es-ES)
 - **Tono:** cálido pero clínico, tutea, lenguaje probabilístico, nunca diagnóstico
 - **Paleta:** cream + sage + coral (tokens en globals.css)
+- **Logo:** Westie minimalista sage + wordmark "tranqui" serif
 - **URGENTE** rompe paywall siempre — es P0 de producto
 - **Polar skipeado** para post-launch; pricing page muestra beta gratuita
 - **Daily.co video** operativo pero bloqueado por billing (tarjeta pendiente)
-- **App Store** no en scope de MVP; testear por Safari PWA en iPhone
+- **Dominio** deferred post App Store; usando tranqui-eight.vercel.app
 
 ---
 
 ## Próximas tasks activas
 
-Al retomar, continuar desde **TASK-075** en branch `phase-5/landing`:
-
-```
-TASK-075 — Form validation
-TASK-078 — Vercel Analytics + Sentry
-TASK-082 — Dominio tranqui.app (o similar) en Cloudflare/Namecheap
-TASK-083 — Push Phase 5 PR + merge
-```
+1. **App Store** — decidir estrategia: Capacitor (wraps web app) vs Expo (React Native)
+2. **TASK-080** — Clinical audit con Carlota (manual, 50 consultas)
+3. **Daily.co billing** — añadir tarjeta en dashboard.daily.co
+4. **Rotar API keys** — Anthropic, Daily, Resend (expuestas el 29/04/2026)
+5. **TASK-082** — Dominio (post App Store)
 
 **Prompt para retomar:**
 
-> "Lee docs/session-context.md y docs/product-roadmap.md. Estoy en branch phase-5/landing. Continúa desde la primera task sin checkear en Fase 5."
+> "Lee docs/session-context.md. El código está en main. Continúa desde las próximas tasks activas."
