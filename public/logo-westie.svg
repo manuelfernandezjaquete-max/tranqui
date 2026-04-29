@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="#5c6f62"/>
+
+  <!-- Wordmark -->
+  <text
+    x="256"
+    y="108"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="72"
+    font-weight="600"
+    letter-spacing="-1"
+    fill="#f5f1e8"
+  >tranqui</text>
+
+  <!-- Ears — behind head -->
+  <!-- Left ear -->
+  <path d="M152 240 L176 148 L228 220Z" fill="#ede7d9" rx="4"/>
+  <!-- Right ear -->
+  <path d="M360 240 L336 148 L284 220Z" fill="#ede7d9"/>
+
+  <!-- Head — clean circle -->
+  <circle cx="256" cy="310" r="148" fill="#f5f1e8"/>
+
+  <!-- Eyes -->
+  <circle cx="210" cy="290" r="16" fill="#2c2a26"/>
+  <circle cx="302" cy="290" r="16" fill="#2c2a26"/>
+  <!-- Eye shine -->
+  <circle cx="216" cy="284" r="6" fill="white"/>
+  <circle cx="308" cy="284" r="6" fill="white"/>
+
+  <!-- Nose -->
+  <ellipse cx="256" cy="338" rx="20" ry="15" fill="#2c2a26"/>
+
+  <!-- Mouth -->
+  <path d="M236 362 Q256 378 276 362" stroke="#2c2a26" stroke-width="4" stroke-linecap="round" fill="none"/>
+</svg>

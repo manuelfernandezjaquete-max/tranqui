@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { UserButton } from "@clerk/nextjs";
@@ -18,12 +19,8 @@ export function AppNav() {
   return (
     <header className="sticky top-0 z-10 border-b border-border-default bg-bg-elevated/80 backdrop-blur">
       <nav aria-label="Navegación principal" className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
-        <Link
-          href="/pets"
-          aria-label="Tranqui — inicio"
-          className="font-display text-xl font-semibold tracking-tight text-sage-700"
-        >
-          Tranqui
+        <Link href="/pets" aria-label="Tranqui — inicio">
+          <Image src="/logo.svg" alt="Tranqui" width={110} height={46} priority />
         </Link>
 
         <ul className="hidden items-center gap-1 sm:flex">
