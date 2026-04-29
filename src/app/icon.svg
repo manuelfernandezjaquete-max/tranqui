@@ -1,40 +1,31 @@
-<svg id="logo-primary" viewBox="0 0 520 220" width="440" xmlns="http://www.w3.org/2000/svg" aria-label="Tranqui" data-om-id="cf8c30b4:16">
-        <defs data-om-id="cf8c30b4:17">
-          <clipPath id="circ-a" data-om-id="cf8c30b4:18"><circle cx="100" cy="110" r="86" data-om-id="nc:2440"/></clipPath>
-        </defs>
-        <!-- sage circle -->
-        <circle cx="100" cy="110" r="86" fill="#5c6f62" data-om-id="nc:2539"/>
-
-        <!-- westie face: minimalist flat -->
-        <g clip-path="url(#circ-a)" data-om-id="cf8c30b4:19">
-          <!-- two ears (rounded triangles) -->
-          <path d="M52 70 Q56 38 78 44 Q86 56 80 80 Z" fill="#faf7f0" data-om-id="nc:2731"/>
-          <path d="M148 70 Q144 38 122 44 Q114 56 120 80 Z" fill="#faf7f0" data-om-id="nc:2803"/>
-          <!-- inner ear hint -->
-          <path d="M62 64 Q66 52 74 56 Q76 64 72 72 Z" fill="#ede7d9" opacity=".7" data-om-id="nc:2914"/>
-          <path d="M138 64 Q134 52 126 56 Q124 64 128 72 Z" fill="#ede7d9" opacity=".7" data-om-id="nc:2999"/>
-          <!-- main face: rounded square shape with fluffy cheeks -->
-          <path d="M100 60&#10;                   C 70 60, 52 82, 52 110&#10;                   C 52 134, 64 152, 80 158&#10;                   C 80 168, 88 174, 100 174&#10;                   C 112 174, 120 168, 120 158&#10;                   C 136 152, 148 134, 148 110&#10;                   C 148 82, 130 60, 100 60 Z" fill="#faf7f0" data-om-id="nc:3159"/>
-          <!-- subtle fur tufts around the face -->
-          <circle cx="64" cy="120" r="5" fill="#faf7f0" data-om-id="nc:3527"/>
-          <circle cx="138" cy="124" r="5" fill="#faf7f0" data-om-id="nc:3585"/>
-          <circle cx="74" cy="148" r="4" fill="#faf7f0" data-om-id="nc:3644"/>
-          <circle cx="128" cy="150" r="4" fill="#faf7f0" data-om-id="nc:3702"/>
-
-          <!-- eyes: simple black dots -->
-          <circle cx="84" cy="116" r="4.2" fill="#2c2a26" data-om-id="nc:3805"/>
-          <circle cx="116" cy="116" r="4.2" fill="#2c2a26" data-om-id="nc:3865"/>
-
-          <!-- nose: flat black triangle, soft -->
-          <path d="M93 134 Q100 130 107 134 Q104 142 100 144 Q96 142 93 134 Z" fill="#2c2a26" data-om-id="nc:3978"/>
-
-          <!-- mouth: simple smile -->
-          <path d="M100 144 L100 152" stroke="#2c2a26" stroke-width="1.6" stroke-linecap="round" fill="none" data-om-id="nc:4114"/>
-          <path d="M100 152 Q94 158 88 154" stroke="#2c2a26" stroke-width="1.6" stroke-linecap="round" fill="none" data-om-id="nc:4225"/>
-          <path d="M100 152 Q106 158 112 154" stroke="#2c2a26" stroke-width="1.6" stroke-linecap="round" fill="none" data-om-id="nc:4342"/>
-        </g>
-
-        <!-- wordmark -->
-        <text x="220" y="128" font-family="Fraunces, serif" font-size="76" font-weight="500" fill="#2c2a26" letter-spacing="-3" data-om-id="cf8c30b4:20">tranqui</text>
-        <text x="222" y="156" font-family="ui-monospace, monospace" font-size="11" letter-spacing="3.6" fill="#5c6f62" data-om-id="cf8c30b4:21">VETERINARIO · 24/7</text>
-      </svg>
+<svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-label="Tranqui">
+  <defs>
+    <clipPath id="circ"><circle cx="100" cy="100" r="86"/></clipPath>
+  </defs>
+  <!-- sage circle background -->
+  <circle cx="100" cy="100" r="100" fill="#5c6f62"/>
+  <!-- westie face clipped to inner circle -->
+  <g clip-path="url(#circ)">
+    <!-- ears -->
+    <path d="M52 70 Q56 38 78 44 Q86 56 80 80 Z" fill="#faf7f0"/>
+    <path d="M148 70 Q144 38 122 44 Q114 56 120 80 Z" fill="#faf7f0"/>
+    <path d="M62 64 Q66 52 74 56 Q76 64 72 72 Z" fill="#ede7d9" opacity=".7"/>
+    <path d="M138 64 Q134 52 126 56 Q124 64 128 72 Z" fill="#ede7d9" opacity=".7"/>
+    <!-- face -->
+    <path d="M100 60 C70 60,52 82,52 110 C52 134,64 152,80 158 C80 168,88 174,100 174 C112 174,120 168,120 158 C136 152,148 134,148 110 C148 82,130 60,100 60 Z" fill="#faf7f0"/>
+    <!-- fur tufts -->
+    <circle cx="64" cy="120" r="5" fill="#faf7f0"/>
+    <circle cx="138" cy="124" r="5" fill="#faf7f0"/>
+    <circle cx="74" cy="148" r="4" fill="#faf7f0"/>
+    <circle cx="128" cy="150" r="4" fill="#faf7f0"/>
+    <!-- eyes -->
+    <circle cx="84" cy="116" r="4.2" fill="#2c2a26"/>
+    <circle cx="116" cy="116" r="4.2" fill="#2c2a26"/>
+    <!-- nose -->
+    <path d="M93 134 Q100 130 107 134 Q104 142 100 144 Q96 142 93 134 Z" fill="#2c2a26"/>
+    <!-- mouth -->
+    <path d="M100 144 L100 152" stroke="#2c2a26" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <path d="M100 152 Q94 158 88 154" stroke="#2c2a26" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <path d="M100 152 Q106 158 112 154" stroke="#2c2a26" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+  </g>
+</svg>
