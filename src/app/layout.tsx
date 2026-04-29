@@ -3,6 +3,7 @@ import { Inter, Fraunces, JetBrains_Mono } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { esES } from "@clerk/localizations";
 import { ConvexClientProvider } from "@/components/shared/ConvexClientProvider";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const inter = Inter({
@@ -45,6 +46,7 @@ export default function RootLayout({
             Saltar al contenido principal
           </a>
           <ConvexClientProvider>{children}</ConvexClientProvider>
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>

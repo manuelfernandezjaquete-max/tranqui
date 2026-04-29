@@ -392,11 +392,11 @@
   Files: across components.
   Notes: Run axe-core in dev, fix all critical issues. Confirm color contrast ratios for cream/sage/coral palette (especially coral on cream). Verify keyboard nav across the consultation flow. Confirm `prefers-reduced-motion` is respected. Verify body text ≥16px on mobile and supports 200% zoom.
 
-- [ ] **TASK-077** — Performance pass.
+- [x] **TASK-077** — Performance pass.
   Files: across.
   Notes: Run Lighthouse on landing and consultation pages on production preview. Target LCP <2.5s mobile, <1.5s broadband. Reduce JS bundle: dynamic-import the chat page's heavy deps (Daily JS imports lazy on `/bookings/[id]` only). Add `next/font` optimization. Verify Web Vitals show green in Vercel.
 
-- [ ] **TASK-078** — Add Vercel Analytics + Sentry.
+- [x] **TASK-078** — Add Vercel Analytics + Sentry.
   Files: `src/app/layout.tsx`, `sentry.client.config.ts`, `sentry.server.config.ts`, `next.config.mjs`.
   Notes: `pnpm add @vercel/analytics @sentry/nextjs`. Configure Sentry project, add envs, redact PII (no message content). Add `<Analytics />` to root layout.
 
