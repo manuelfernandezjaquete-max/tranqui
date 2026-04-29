@@ -380,7 +380,7 @@
   Files: `src/app/(marketing)/legal/terms/page.tsx`, `legal/privacy/page.tsx`, `legal/disclaimer/page.tsx`.
   Notes: Disclaimer uses `DISCLAIMER_TEXT_LONG`. Terms and privacy: draft template covering: subscription billing terms, refund policy (vet no-show full refund, otherwise no refund after period start), data retention per Open Question Q6, GDPR rights (access, deletion via support email for MVP), governing law (Spain). Have these reviewed by a Spanish legal advisor before launch.
 
-- [ ] **TASK-074** — Polish empty / loading / error states across all main routes.
+- [x] **TASK-074** — Polish empty / loading / error states across all main routes.
   Files: across `src/app/(app)/**`, `src/components/shared/EmptyState.tsx`, `src/components/shared/ErrorBoundary.tsx`, `src/components/shared/LoadingSkeleton.tsx`.
   Notes: For each authenticated page (pets, history, bookings, settings), implement: skeleton on first load, friendly empty state with CTA, error toast on mutation failure with retry. Per § 12.
 
