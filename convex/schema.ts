@@ -117,6 +117,8 @@ export default defineSchema({
       v.literal("system"),
     ),
     content: v.string(),
+    // Optional image attached by the user (stored in Convex file storage)
+    imageStorageId: v.optional(v.id("_storage")),
     isStreaming: v.boolean(),
     isFinalAnalysis: v.boolean(),
     structuredAnalysis: v.optional(structuredAnalysis),

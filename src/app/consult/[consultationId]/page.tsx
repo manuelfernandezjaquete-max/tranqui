@@ -52,12 +52,13 @@ export default function ActiveConsultationPage({
   const isStreaming = lastMessage?.isStreaming === true;
   const isClosed = consultation.status === "closed";
 
-  const onSend = async (content: string) => {
+  const onSend = async (content: string, imageStorageId?: Id<"_storage">) => {
     setIsSending(true);
     try {
       await appendUserMessage({
         consultationId: id,
         content,
+        imageStorageId,
         accessToken,
       });
     } finally {
