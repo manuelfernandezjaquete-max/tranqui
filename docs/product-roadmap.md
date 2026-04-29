@@ -407,7 +407,7 @@
 - [ ] **TASK-080** — Final clinical audit pass.
   Notes: Review the next 50 production-style consultations (use a separate test deployment or mark as test runs) with the clinical advisor. Document the appropriate-triage rate and any prompt adjustments needed in `docs/prompt-audit.md`. The bar is ≥85% appropriate triage. This is a quality gate.
 
-- [ ] **TASK-081** — Final disclaimer / safety surface audit.
+- [x] **TASK-081** — Final disclaimer / safety surface audit.
   Notes: Manually verify (1) disclaimer banner visible at start of every consultation type (free-trial, signed-in, vet-side), (2) disclaimer footer in every analysis card, (3) `/legal/disclaimer` matches the constant, (4) URGENTE bypasses paywall in free-trial post-limit, (5) booking flow does not allow paywall during URGENTE flow. Document the audit in `docs/launch-readiness.md`.
 
 - [ ] **TASK-082** — Domain + production deploy.
