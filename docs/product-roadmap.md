@@ -400,7 +400,7 @@
   Files: `src/app/layout.tsx`, `sentry.client.config.ts`, `sentry.server.config.ts`, `next.config.mjs`.
   Notes: `pnpm add @vercel/analytics @sentry/nextjs`. Configure Sentry project, add envs, redact PII (no message content). Add `<Analytics />` to root layout.
 
-- [ ] **TASK-079** — Set up SEO basics on marketing pages.
+- [x] **TASK-079** — Set up SEO basics on marketing pages.
   Files: `src/app/(marketing)/**`, `src/app/sitemap.ts`, `src/app/robots.ts`, `src/app/opengraph-image.tsx`.
   Notes: Per-page `metadata` exports with title, description (Spanish), OG image (use `opengraph-image.tsx` to generate from edge). Sitemap covers landing, pricing, FAQ, legal pages. Robots allows all marketing routes, disallows `/(app)/*` and `/(vet)/*`.
 

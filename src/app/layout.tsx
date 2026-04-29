@@ -25,9 +25,20 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tranqui",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL ?? "https://tranqui.app",
+  ),
+  title: {
+    default: "Tranqui",
+    template: "%s — Tranqui",
+  },
   description:
-    "Tranqui — asistente veterinario IA. Orientación clínica responsable y videoconsulta cuando hace falta.",
+    "Asistente veterinario IA 24/7. Orientación clínica responsable y videoconsulta cuando hace falta.",
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    siteName: "Tranqui",
+  },
 };
 
 export default function RootLayout({

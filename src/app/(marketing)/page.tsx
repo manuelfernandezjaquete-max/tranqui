@@ -1,9 +1,33 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui";
 import { MarketingNav } from "@/components/marketing/MarketingNav";
 import { HeroPreview } from "@/components/marketing/HeroPreview";
 import { Wordmark } from "@/components/marketing/Wordmark";
+
+export const metadata: Metadata = {
+  title: "Tranqui — Asistente Veterinario IA 24/7",
+  description:
+    "Resuelve tus dudas veterinarias con IA en minutos. Triage clínico en 3 niveles y videoconsulta con veterinario colegiado cuando lo necesites. Prueba gratis.",
+  openGraph: {
+    title: "Tranqui — Asistente Veterinario IA 24/7",
+    description:
+      "Resuelve tus dudas veterinarias con IA en minutos. Triage clínico en 3 niveles y videoconsulta con veterinario colegiado cuando lo necesites.",
+    type: "website",
+    locale: "es_ES",
+    siteName: "Tranqui",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tranqui — Asistente Veterinario IA 24/7",
+    description:
+      "Resuelve tus dudas veterinarias con IA en minutos. Prueba gratis.",
+  },
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const STATS: Array<[string, string]> = [
   ["3 min", "respuesta media"],

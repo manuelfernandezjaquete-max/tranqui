@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui";
 import { MarketingNav } from "@/components/marketing/MarketingNav";
 import { Wordmark } from "@/components/marketing/Wordmark";
+
+export const metadata: Metadata = {
+  title: "Preguntas frecuentes — Tranqui",
+  description:
+    "Resolvemos tus dudas sobre Tranqui: cómo funciona el asistente IA veterinario, qué incluye la suscripción y cómo reservar una videoconsulta.",
+  openGraph: {
+    title: "Preguntas frecuentes — Tranqui",
+    description:
+      "Cómo funciona el asistente IA veterinario de Tranqui, qué incluye y cómo reservar videoconsulta.",
+    type: "website",
+    locale: "es_ES",
+  },
+  alternates: {
+    canonical: "/faq",
+  },
+};
 
 const FAQS = [
   {
@@ -65,10 +82,6 @@ const FAQS = [
     ],
   },
 ];
-
-export const metadata = {
-  title: "FAQ — Tranqui",
-};
 
 export default function FaqPage() {
   return (

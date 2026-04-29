@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@/components/ui";
 import { MarketingNav } from "@/components/marketing/MarketingNav";
 import { Wordmark } from "@/components/marketing/Wordmark";
+
+export const metadata: Metadata = {
+  title: "Precio — Tranqui",
+  description:
+    "Tranqui Mensual por 9,99 €/mes. Consultas IA ilimitadas, triage clínico y 1 videoconsulta mensual con veterinario colegiado incluida.",
+  openGraph: {
+    title: "Precio — Tranqui",
+    description:
+      "9,99 €/mes. Consultas IA ilimitadas y 1 videoconsulta mensual con veterinario colegiado incluida.",
+    type: "website",
+    locale: "es_ES",
+  },
+  alternates: {
+    canonical: "/pricing",
+  },
+};
 
 const INCLUDES = [
   "Consultas ilimitadas con el asistente IA 24/7",
@@ -30,10 +47,6 @@ const FAQS = [
     a: "Todos los que quieras. Un hogar, múltiples mascotas — sin coste adicional.",
   },
 ];
-
-export const metadata = {
-  title: "Precio — Tranqui",
-};
 
 export default function PricingPage() {
   return (
