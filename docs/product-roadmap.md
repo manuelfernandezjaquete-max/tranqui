@@ -388,7 +388,7 @@
   Files: `src/components/pets/PetForm.tsx`, `src/components/shared/SettingsForm.tsx`, others.
   Notes: All forms use `react-hook-form + zod`; inline errors below each field; aria-describedby for screen readers; submit button shows loading state.
 
-- [ ] **TASK-076** — Accessibility pass.
+- [x] **TASK-076** — Accessibility pass.
   Files: across components.
   Notes: Run axe-core in dev, fix all critical issues. Confirm color contrast ratios for cream/sage/coral palette (especially coral on cream). Verify keyboard nav across the consultation flow. Confirm `prefers-reduced-motion` is respected. Verify body text ≥16px on mobile and supports 200% zoom.
 

@@ -10,7 +10,7 @@ export function MarketingNav() {
 
   return (
     <header className="sticky top-0 z-10 border-b border-border-default bg-bg-base/75 backdrop-blur">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 sm:px-14">
+      <nav aria-label="Navegación principal" className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5 sm:px-14">
         <Wordmark />
         <div className="flex items-center gap-4 text-sm text-text-secondary sm:gap-7">
           <Link

@@ -41,6 +41,9 @@ export default function RootLayout({
         className={`${inter.variable} ${fraunces.variable} ${jetbrainsMono.variable} h-full antialiased`}
       >
         <body className="min-h-full flex flex-col">
+          <a href="#main-content" className="skip-link">
+            Saltar al contenido principal
+          </a>
           <ConvexClientProvider>{children}</ConvexClientProvider>
         </body>
       </html>

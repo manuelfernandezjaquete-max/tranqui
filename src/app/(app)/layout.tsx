@@ -10,9 +10,9 @@ export default function AppLayout({
     <div className="flex min-h-screen flex-col">
       <UserBootstrap />
       <AppNav />
-      <div className="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
+      <main id="main-content" className="mx-auto w-full max-w-5xl flex-1 px-4 py-6">
         {children}
-      </div>
+      </main>
     </div>
   );
 }
