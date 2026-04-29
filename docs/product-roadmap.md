@@ -376,7 +376,7 @@
   Files: `src/app/(marketing)/pricing/page.tsx`, `src/app/(marketing)/faq/page.tsx`.
   Notes: Pricing: one-card layout for Tranqui Mensual €9.99, with "qué incluye", FAQ on extra consultations. FAQ: extracted from Vision § 4 Messaging Framework → Objection handlers, plus 4-5 product-specific FAQs.
 
-- [ ] **TASK-073** — Build legal pages: terms, privacy, disclaimer.
+- [x] **TASK-073** — Build legal pages: terms, privacy, disclaimer.
   Files: `src/app/(marketing)/legal/terms/page.tsx`, `legal/privacy/page.tsx`, `legal/disclaimer/page.tsx`.
   Notes: Disclaimer uses `DISCLAIMER_TEXT_LONG`. Terms and privacy: draft template covering: subscription billing terms, refund policy (vet no-show full refund, otherwise no refund after period start), data retention per Open Question Q6, GDPR rights (access, deletion via support email for MVP), governing law (Spain). Have these reviewed by a Spanish legal advisor before launch.
 
