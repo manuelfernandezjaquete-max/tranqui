@@ -14,13 +14,13 @@ export function MarketingNav() {
         <Wordmark />
         <div className="flex items-center gap-4 text-sm text-text-secondary sm:gap-7">
           <Link
-            href="#como-funciona"
+            href="/faq"
             className="hidden hover:text-text-primary sm:inline"
           >
             Cómo funciona
           </Link>
           <Link
-            href="#precio"
+            href="/pricing"
             className="hidden hover:text-text-primary sm:inline"
           >
             Precio
